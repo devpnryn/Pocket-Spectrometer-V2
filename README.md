@@ -1,17 +1,21 @@
 # Pocket-Spectrometer-V2
 
-This is the second version of the Pocket Spectrometer. The main improvement is the use of an AMS sensor from Adafruit that features a built-in grove-compatible port (known as Stemma QT) for I2C communication. While the previous version used a DFRobot AMS sensor that required manual soldering of I2C connections, this version simplifies assembly by using Adafruit's sensor with the Stemma port. The M5StickC and AMS sensor are connected using a Grove to Stemma connector, readily available from Adafruit. This cable offers improved stability with additional grip at the Grove port, making it more reliable than the original Grove cable used in the first version, which had a looser connection. This plug-and-play approach eliminates the need for soldering, reducing build steps and complexity. The 3D-printed main body has been modified to accommodate the Adafruit AMS sensor's different form factor. This version is improvement on the build side, but functionality of the spectrometer remains the same. 
+I've always wanted to create a spectrometer that is so small it can fit into one's pocket and just barely larger than a cuvette itself. Working with bulky commercial spectrometers in labs, I was wondering about applications of such a small spectrometer. That's when I discovered the perfect combination – the M5StickC microcontroller and the AS7341 spectral sensor. My goal was simple: create an ultra-compact spectrometer that anyone could use. The first version of such miniature spectrometer is presented here: https://github.com/scientistnobee/Pocket-Spectrometer
+
+This repository is the second version of the Pocket Spectrometer. The main improvement is the use of an AMS sensor from Adafruit that features a built-in grove-compatible port (known as Stemma QT) for I2C communication. While the previous version used a DFRobot AMS sensor that required manual soldering of I2C connections, this version simplifies assembly by using Adafruit's sensor with the Stemma port. The M5StickC and AMS sensor are connected using a Grove to Stemma connector, readily available from Adafruit. This cable offers improved stability with additional grip at the Grove port, making it more reliable than the original Grove cable used in the first version, which had a looser connection. This plug-and-play approach eliminates the need for soldering, reducing build steps and complexity. The 3D-printed main body has been modified to accommodate the Adafruit AMS sensor's different form factor. This version is improvement on the build side, but functionality of the spectrometer remains the same. 
 
 ## Bill of Materials (BOM)
 
-* 1x M5StickC  
+* 1x M5StickC  (https://docs.m5stack.com/en/core/m5stickc_plus)
 * 1x AS7341 spectral sensor from Adafruit (https://www.adafruit.com/product/4698)
 * 1x 100mm Grove to stemma connector cable (https://www.adafruit.com/product/4528)
-* 4x M2 screws  
-* 4x M2 heat-set inserts  
+* 4x M2 screws  (https://eu.mouser.com/ProductDetail/Harwin/M80-2260000B?qs=DXv0QSHKF4wN5XPxPv8mDw%3D%3D&utm_source=octopart&utm_medium=aggregator&utm_campaign=855-M80-2260000B&utm_content=Harwin)
+* 4x M2 heat-set inserts  (https://www.mouser.com/ProductDetail/SI/IUTFB-M2?qs=DPoM0jnrROVcA4QFWOCRzw%3D%3D&srsltid=AfmBOopUU4Yk4SA0-Q8_GQOYWdSUdiCuBDWbHyQfNmQKO6hRtp1Q_SV6)
 * Black filament for 3D printing  
 * Black electrical tape
 * White reflector (Optional)
+
+![alt text](https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6296.jpg)
 
 ## 3D-Printed Components
 

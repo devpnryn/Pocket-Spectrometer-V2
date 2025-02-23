@@ -11,16 +11,17 @@ This repository is the second version of the Pocket Spectrometer. The main impro
 * 1x 100mm Grove to stemma connector cable (https://www.adafruit.com/product/4528)
 * 4x M2 screws  (https://eu.mouser.com/ProductDetail/Harwin/M80-2260000B?qs=DXv0QSHKF4wN5XPxPv8mDw%3D%3D&utm_source=octopart&utm_medium=aggregator&utm_campaign=855-M80-2260000B&utm_content=Harwin)
 * 4x M2 heat-set inserts  (https://www.mouser.com/ProductDetail/SI/IUTFB-M2?qs=DPoM0jnrROVcA4QFWOCRzw%3D%3D&srsltid=AfmBOopUU4Yk4SA0-Q8_GQOYWdSUdiCuBDWbHyQfNmQKO6hRtp1Q_SV6)
-* Black filament for 3D printing  
+* Black PLA filament for 3D printing  
 * Black electrical tape
 * White reflector (Optional)
 
-![alt text](https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6296.jpg)
+![alt text](https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6672.jpg)
 
 ## 3D-Printed Components
 
 * Main body  
 * Cap (optional)
+* White reflector (Optional)
 
 ## Hardware Tools Required
 
@@ -69,9 +70,9 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 #### Prepare M5StickC
 
 1. Power on the M5StickC  
-2. Quickly press the M5 button after restart (using reset/PWR button) until you see the settings screen  
-3. Select "Switch Mode" using the M5 button  
-4. Choose "USB Mode" from the options
+2. Quickly press the M5 button after restart (using reset/PWR button) until you see the settings screen <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_7081.jpg" alt="alt text" width="500">
+3. Select "Switch Mode" using the M5 button  <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_7082.jpg" alt="alt text" width="500">
+4. Choose "USB Mode" from the options <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_7083.jpg" alt="alt text" width="500">
 
 #### Set Up Thonny IDE
 
@@ -88,14 +89,14 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 ### 2. Hardware Assembly
 
 1. First test the components:
-   - Connect the Grove to stemma cable between M5StickC and AMS sensor
+   - Connect the Grove to stemma cable between M5StickC and AMS sensor 
    - Flash the firmware using Thonny IDE
-   - Verify the spectral sensor functions correctly
-   - Disconnect the Grove connector after testing
+   - Verify the spectral sensor functions correctly <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6542.jpg" alt="alt text" width="500">
+   - Disconnect the Grove connector after testing 
 
 2. Prepare the 3D printed parts:
-   - Print the main body and cap (no support required)
-   - Install M2 heat-set inserts into the main body using a soldering iron
+   - Print the main body and cap (no support required) <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/cura1.png" alt="alt text" width="500">
+   - Install M2 heat-set inserts into the main body using a soldering iron <img src="https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6666.jpg" alt="alt text" width="500">
    
 3. Final assembly:
    - Mount the AMS sensor to the body using M2 screws

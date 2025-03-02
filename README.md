@@ -70,9 +70,12 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 #### Prepare M5StickC
 
 1. Power on the M5StickC  
-2. Quickly press the M5 button after restart (using reset/PWR button) until you see the settings screen <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7081c.jpg" alt="alt text" width="500">
-3. Select "Switch Mode" using the M5 button  <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7082c.jpg" alt="alt text" width="500">
-4. Choose "USB Mode" from the options <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7083c.jpg" alt="alt text" width="500">
+2. Quickly press the M5 button after restart (using reset/PWR button) until you see the settings screen
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7081c.jpg" alt="alt text" width="500">
+3. Select "Switch Mode" using the M5 button
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7082c.jpg" alt="alt text" width="500">
+4. Choose "USB Mode" from the options
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7083c.jpg" alt="alt text" width="500">
 
 #### Set Up Thonny IDE
 

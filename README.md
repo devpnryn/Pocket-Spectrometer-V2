@@ -15,7 +15,7 @@ This repository is the second version of the Pocket Spectrometer. The main impro
 * Black electrical tape
 * White reflector (Optional)
 
-![alt text](https://github.com/scientistnobee/Pocket-Spectrometer/blob/main/Images/IMG_6672.jpg)
+![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_6672.jpg)
 
 ## 3D-Printed Components
 

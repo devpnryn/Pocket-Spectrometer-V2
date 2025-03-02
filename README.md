@@ -91,7 +91,7 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 1. First test the components:
    - Connect the Grove to stemma cable between M5StickC and AMS sensor 
    - Flash the firmware using Thonny IDE
-   - Verify the spectral sensor functions correctly <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/circuit.JPG" alt="alt text" width="500">
+   - Verify the spectral sensor functions correctly <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/circuit.jpg" alt="alt text" width="500">
    - Disconnect the Grove connector after testing 
 
 2. Prepare the 3D printed parts:

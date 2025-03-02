@@ -117,8 +117,8 @@ The code is written in MicroPython for simplicity and accessibility, making it e
 * Upgrade to AS7343 for expanded capabilities (14 spectral channels vs AS7341's 10 channels)  
 * Optimize battery life for extended field use  
 * Conduct comprehensive testing (Work in progress)
-  ![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7294c.jpg)
-  ![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7298c.jpg)
+  ![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7294c.png)
+  ![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7298c.png)
 * Document detailed measurement protocols and generate standard curve plots  
 * Add data logging functionality with time-stamped spectra files
 * Create a calibration procedure for improved accuracy

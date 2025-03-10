@@ -1,5 +1,6 @@
 # Pocket-Spectrometer-V2
-<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_6542.jpg" alt="alt text" width="500">
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7647c.jpg" alt="alt text" width="500">
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7632c.jpg" alt="alt text" width="500">
 I've always wanted to create a spectrometer that is so small it can fit into one's pocket and just barely larger than a cuvette itself. Working with bulky commercial spectrometers in labs, I was wondering about applications of such a small spectrometer. That's when I discovered the perfect combination – the M5StickC microcontroller and the AS7341 spectral sensor. My goal was simple: create an ultra-compact spectrometer that anyone could use. The first version of such miniature spectrometer is presented here: https://github.com/scientistnobee/Pocket-Spectrometer
 
 This repository is the second version of the Pocket Spectrometer. The main improvement is the use of an AMS sensor from Adafruit that features a built-in grove-compatible port (known as Stemma QT) for I2C communication. While the previous version used a DFRobot AMS sensor that required manual soldering of I2C connections, this version simplifies assembly by using Adafruit's sensor with the Stemma port. The M5StickC and AMS sensor are connected using a Grove to Stemma connector, readily available from Adafruit. This cable offers improved stability with additional grip at the Grove port, making it more reliable than the original Grove cable used in the first version, which had a looser connection. This plug-and-play approach eliminates the need for soldering, reducing build steps and complexity. The 3D-printed main body has been modified to accommodate the Adafruit AMS sensor's different form factor. This version is improvement on the build side, but functionality of the spectrometer remains the same. 
@@ -15,13 +16,13 @@ This repository is the second version of the Pocket Spectrometer. The main impro
 * Black electrical tape
 * White reflector (Optional)
 
-![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_6672c2.jpg)
+![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7582c.jpg)
 
 ## 3D-Printed Components
 
 * Main body  
 * Cap (optional)
-* White reflector (Optional)
+* White reflector 
 
 ## Hardware Tools Required
 

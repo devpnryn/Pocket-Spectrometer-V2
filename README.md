@@ -1,7 +1,7 @@
 # Pocket-Spectrometer-V2
 <p float="left">
-<img   src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7647c.jpg" alt="alt text" width="500"> 
-<img  src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7632c.jpg" alt="alt text" width="500">
+<img   src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7647c.jpg" alt="alt text" width="400"> 
+<img  src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7632c.jpg" alt="alt text" width="400">
 </p>   
 I've always wanted to create a spectrometer that is so small it can fit into one's pocket and just barely larger than a cuvette itself. Working with bulky commercial spectrometers in labs, I was wondering about applications of such a small spectrometer. That's when I discovered the perfect combination – the M5StickC microcontroller and the AS7341 spectral sensor. My goal was simple: create an ultra-compact spectrometer that anyone could use. The first version of such miniature spectrometer is presented here: https://github.com/scientistnobee/Pocket-Spectrometer
 

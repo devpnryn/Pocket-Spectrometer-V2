@@ -123,7 +123,8 @@ The M5StickC is the perfect platform for this project because it packs incredibl
    - Connect the Grove to stemma cable to the M5StickC
      <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7602c.jpg" alt="alt text" width="500">
    - See this image for more clarity.
-     <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7600c.jpg" alt="alt text" width="500">
+     
+      <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7600c.jpg" alt="alt text" width="500">
    - Press-fit the M5StickC into the body from the top
    - Apply black electrical tape to cover the AMS sensor and wires for light isolation and protection
    - Attach the cap if desired

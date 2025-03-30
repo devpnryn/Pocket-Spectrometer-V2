@@ -116,9 +116,12 @@ The M5StickC is the perfect platform for this project because it packs incredibl
    - Install M2 heat-set inserts into the main body using a soldering iron <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_6666.jpg" alt="alt text" width="500">
    
 3. Final assembly:
-   - Mount the AMS sensor to the body using M2 screws <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7597c.jpg" alt="alt text" width="500">
-   - Route the Grove to stemma cable from the AMS sensor through the hole at the bottom into the slot for M5stickC as shown in the image here.  <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7598c.jpg" alt="alt text" width="500">
-   - Connect the Grove to stemma cable to the M5StickC  <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7602c.jpg" alt="alt text" width="500">
+   - Mount the AMS sensor to the body using M2 screws
+     <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7597c.jpg" alt="alt text" width="500">
+   - Route the Grove to stemma cable from the AMS sensor through the hole at the bottom into the slot for M5stickC as shown in the image here.
+     <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7598c.jpg" alt="alt text" width="500">
+   - Connect the Grove to stemma cable to the M5StickC
+     <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7602c.jpg" alt="alt text" width="500">
    - See this image for more clarity.
      <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7600c.jpg" alt="alt text" width="500">
    - Press-fit the M5StickC into the body from the top

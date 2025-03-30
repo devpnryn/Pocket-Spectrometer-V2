@@ -82,7 +82,7 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 4. Choose "USB Mode" from the options
 <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7083c.jpg" alt="alt text" width="500">
 
-#### Set Up Thonny IDE
+#### Set Up Thonny IDE and upload the firmware
 
 1. Download and install [Thonny IDE](https://thonny.org/)  
 2. Connect the M5stickC to computer and Open Thonny
@@ -95,25 +95,29 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 7. Download the software from this repository and save into a folder (For example to Downloads folder).
 8. Unzip the folder. Navigate to this folder's sub folder named Software inside Thorny. The files of the Software should should up at the top-left side as shown in the below figure.  
 <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/micropython7c.png" alt="alt text" width="500"> 
-9. If M5StickC is connected and set-up correctly within Thorny thenthe existing files of M5stick's flash memoery can be seen at the lower left side of the Thorny.
-10. Now copy (drag) the files from the computer (top left) to M5stickC (bottom-left).  
+9. If M5StickC is connected and set-up correctly within Thorny then the existing files of M5stick's flash memoery can be seen at the lower left side of the Thorny.
 <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/micropython8.png" alt="alt text" width="500">
+11. Now copy (drag) the files from the computer (top left) to M5stickC (bottom-left).
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/micropython9.png" alt="alt text" width="500">
+
 
 
 ### 2. Hardware Assembly
 
 1. First test the components:
-   - Connect the Grove to stemma cable between M5StickC and AMS sensor 
-   - Flash the firmware using Thonny IDE
-   - Verify the spectral sensor functions correctly <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/circuit.jpg" alt="alt text" width="500">
-   - Disconnect the Grove connector after testing 
+   - Connect the Grove to stemma cable between M5StickC and AMS sensor  <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/circuit.jpg" alt="alt text" width="500">
+   - Upload the firmware using Thonny IDE as described above
+   - Verify the spectral sensor functions correctly. If M5 button is pressed, white light of the AMS sensor should be on and a spectrum should be displayed on the screen as shown in the picture. 
+   - Disconnect the Grove connector cable from the M5StickC after the above testing  <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7592c.jpg" alt="alt text" width="500">
 
 2. Prepare the 3D printed parts:
-   - Print the main body and cap (no support required) <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/cura1.PNG" alt="alt text" width="500">
+   - Print the main body and cap using Black PLA (no support required). Look here for the print orinetation <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/cura1.PNG" alt="alt text" width="500">
+   - Print the reflector using a white  PLA (no support required). Look here for the print orinetation 
    - Install M2 heat-set inserts into the main body using a soldering iron <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_6666.jpg" alt="alt text" width="500">
    
 3. Final assembly:
-   - Mount the AMS sensor to the body using M2 screws
+   - Mount the AMS sensor to the body using M2 screws <img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7597c.jpg" alt="alt text" width="500">
+   - Route the 
    - Press-fit the M5StickC into the body from the top
    - Route and connect the Grove connector from the M5StickC to the AMS sensor
    - Apply black electrical tape to cover the AMS sensor and wires for light isolation and protection

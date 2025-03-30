@@ -16,16 +16,16 @@ This repository is the second version of the Pocket Spectrometer. The main impro
 * 1x 100mm Grove to stemma connector cable (https://www.adafruit.com/product/4528)
 * 4x M2 screws  (https://eu.mouser.com/ProductDetail/Harwin/M80-2260000B?qs=DXv0QSHKF4wN5XPxPv8mDw%3D%3D&utm_source=octopart&utm_medium=aggregator&utm_campaign=855-M80-2260000B&utm_content=Harwin)
 * 4x M2 heat-set inserts  (https://www.mouser.com/ProductDetail/SI/IUTFB-M2?qs=DPoM0jnrROVcA4QFWOCRzw%3D%3D&srsltid=AfmBOopUU4Yk4SA0-Q8_GQOYWdSUdiCuBDWbHyQfNmQKO6hRtp1Q_SV6)
-* Black PLA filament for 3D printing  
-* Black electrical tape
-* White reflector (Optional)
+* Black PLA filament for 3D printing of the enclosure and the cap
+* White PLA for 3D printing of the reflector    
+* * Black electrical tape
 
 ![alt text](https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/IMG_7582c.jpg)
 
 ## 3D-Printed Components
 
 * Main body  
-* Cap (optional)
+* Cap 
 * White reflector 
 
 ## Hardware Tools Required
@@ -36,7 +36,7 @@ This repository is the second version of the Pocket Spectrometer. The main impro
 
 ## Software Tools Required
 
-* OpenSCAD for 3D printed parts (Optional, only required to modify the designs)  
+* OpenSCAD for 3D printed parts (Optional, only required if you wany to modify the designs)  
 * 3D printer slicer software (e.g., Ultimaker CURA)  
 * Thonny IDE for programming the M5StickC
 
@@ -85,14 +85,20 @@ The M5StickC is the perfect platform for this project because it packs incredibl
 #### Set Up Thonny IDE
 
 1. Download and install [Thonny IDE](https://thonny.org/)  
-2. Open Thonny  
-3. Navigate to Tools > Options > Interpreter  
-4. Configure settings:  
+2. Connect the M5stickC to computer and Open Thonny
+4. Navigate to Tools > Options > Interpreter  
+5. Configure settings:  
    - Set interpreter to "MicroPython (ESP32)"  
    - Select the correct COM port for your M5StickC  
    - Click OK and reconnect  
-5. Once connected, you can write and test code directly in the IDE  
-6. Best practice is to write your code in `main.py` for automatic execution on startup
+6. Once connected, you can write and test code directly in the IDE
+7. Download the software from this repository and save into a folder (For example to Downloads folder).
+8. Unzip the folder. Navigate to this folder's sub folder named Software inside Thorny. The files of the Software should should up at the top-left side as shown in the below figure.  
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/micropython7c.png" alt="alt text" width="500"> 
+9. If M5StickC is connected and set-up correctly within Thorny thenthe existing files of M5stick's flash memoery can be seen at the lower left side of the Thorny.
+10. Now copy (drag) the files from the computer (top left) to M5stickC (bottom-left).  
+<img src="https://github.com/scientistnobee/Pocket-Spectrometer-V2/blob/main/Images/micropython8.png" alt="alt text" width="500">
+
 
 ### 2. Hardware Assembly
 
@@ -138,8 +144,7 @@ The code is written in MicroPython for simplicity and accessibility, making it e
 * If code doesn't execute properly, use the stop/rerun button in Thonny IDE until you see three forward-looking arrows in the console  
 * Restart the device if experiencing connection issues  
 * Ensure proper USB mode selection on the M5StickC before programming  
-* Ensure correct serial port is selected at the Thonny IDE 
-
+* Ensure correct serial port is selected at the Thonny IDE M
 
 ### Hardware Issues
 

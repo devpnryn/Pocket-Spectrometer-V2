@@ -355,9 +355,17 @@ const char index_html[] PROGMEM = R"rawliteral(
             }, 3000);
         }
         
+        // Function to periodically refresh data
+        function startAutoRefresh() {
+            // Refresh data every 2 seconds
+            setInterval(function() {
+                fetchData();
+            }, 2000);
+        }
         // Initialize the chart when the page loads
         window.onload = function() {
             fetchData(); // Get initial data
+            startAutoRefresh(); // Start periodic refresh
         };
     </script>
 </body>

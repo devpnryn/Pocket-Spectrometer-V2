@@ -6,8 +6,8 @@
 #include "AS7341.h"
 
 // WiFi credentials - CHANGE THESE
-const char *ssid = "wifi";
-const char *password = "password";
+const char *ssid = "wifi_ssid";
+const char *password = "wifi_password";
 
 // Create web server object
 WebServer server(80);
@@ -31,6 +31,30 @@ uint16_t spectralData[9]; // F1-F8 + NIR
 // Flag to indicate if a new measurement was taken
 bool newMeasurementTaken = false;
 
+// Add these global variables for UI state
+int displayMode = 0; // 0: spectrum, 1: wavelength selection, 2: gain settings, 3: integration time
+unsigned long lastUIUpdate = 0;
+const int uiUpdateInterval = 100; // Update UI every 100ms
+
+// Define 16-bit RGB565 colors for M5StickC Plus
+// Note: These are 16-bit colors, not 24-bit
+#define COLOR_VIOLET 0x801F // Approximate violet in RGB565
+#define COLOR_INDIGO 0x4810 // Approximate indigo in RGB565
+#define COLOR_BLUE 0x001F   // Blue in RGB565
+#define COLOR_CYAN 0x07FF   // Cyan in RGB565
+#define COLOR_GREEN 0x07E0  // Green in RGB565
+#define COLOR_YELLOW 0xFFE0 // Yellow in RGB565
+#define COLOR_ORANGE 0xFD20 // Approximate orange in RGB565
+#define COLOR_RED 0xF800    // Red in RGB565
+#define COLOR_GREY 0x8410   // Grey in RGB565
+#define COLOR_WHITE 0xFFFF  // White in RGB565
+#define COLOR_BLACK 0x0000  // Black in RGB565
+
+// Array of colors for each wavelength
+uint16_t wavelengthColors[] = {
+    COLOR_VIOLET, COLOR_INDIGO, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
+    COLOR_YELLOW, COLOR_ORANGE, COLOR_RED, COLOR_GREY};
+
 // Function to update sensor settings
 void updateSettings()
 {
@@ -38,7 +62,7 @@ void updateSettings()
     sensor.setGain(gainCodes[gainIndex]);
 }
 
-// Function to take a measurement with mock data
+// Function to take a measurement
 void takeMeasurement()
 {
     // Generate mock data based on gain and integration time
@@ -62,6 +86,170 @@ void takeMeasurement()
     newMeasurementTaken = true;
 }
 
+// Function to display spectrum on M5StickC Plus screen
+void displaySpectrum()
+{
+    // Clear the screen
+    M5.Lcd.fillScreen(COLOR_BLACK);
+
+    // Create space at top for headers
+    int topMargin = 40;
+
+    // Get selected values
+    uint16_t selectedBar = spectralData[wavelengthIndex];
+    uint16_t selectedColor = wavelengthColors[wavelengthIndex];
+    String selectedName = wavelengthNames[wavelengthIndex];
+
+    // Find maximum value for scaling
+    uint16_t maxVal = 0;
+    for (int i = 0; i < 9; i++)
+    {
+        if (spectralData[i] > maxVal)
+            maxVal = spectralData[i];
+    }
+
+    // Scale factor
+    float scale = (M5.Lcd.height() - topMargin - 20) / (float)maxVal;
+    if (maxVal == 0)
+        scale = 1;
+
+    // Calculate bar width and spacing
+    int barWidth = 8;
+    int spacing = 2;
+    int startX = (M5.Lcd.width() - (9 * barWidth + 8 * spacing)) / 2;
+
+    // Draw bars
+    for (int i = 0; i < 9; i++)
+    {
+        int height = (int)(spectralData[i] * scale);
+        if (height < 1)
+            height = 1; // Ensure at least 1 pixel height
+        uint16_t color = wavelengthColors[i];
+
+        // Highlight selected wavelength
+        if (i == wavelengthIndex)
+        {
+            M5.Lcd.drawRect(
+                startX + i * (barWidth + spacing) - 1,
+                M5.Lcd.height() - height - 1,
+                barWidth + 2,
+                height + 2,
+                COLOR_WHITE);
+        }
+
+        // Draw the bar
+        M5.Lcd.fillRect(
+            startX + i * (barWidth + spacing),
+            M5.Lcd.height() - height,
+            barWidth,
+            height,
+            color);
+    }
+
+    // Display information at the top
+    M5.Lcd.setTextSize(1);
+
+    // Selected wavelength
+    M5.Lcd.setTextColor(selectedColor);
+    M5.Lcd.setCursor(5, 5);
+    M5.Lcd.print(selectedName);
+    M5.Lcd.print(" ");
+    M5.Lcd.print(wavelengthValues[wavelengthIndex]);
+    M5.Lcd.print("nm");
+
+    // Count value
+    M5.Lcd.setTextColor(COLOR_WHITE);
+    M5.Lcd.setCursor(5, 15);
+    M5.Lcd.print("Count: ");
+    M5.Lcd.print(selectedBar);
+
+    // Gain and integration time
+    M5.Lcd.setCursor(5, 25);
+    M5.Lcd.print("G:");
+    M5.Lcd.print(gainFactors[gainIndex]);
+    M5.Lcd.print("x I:");
+    float integrationTimeMs = (atimeSettings[atimeIndex] + 1) * 2.78;
+    M5.Lcd.print(integrationTimeMs);
+    M5.Lcd.print("ms");
+}
+
+// Function to display wavelength selection screen
+void displayWavelengthSelection()
+{
+    M5.Lcd.fillScreen(COLOR_BLACK);
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setTextColor(COLOR_YELLOW);
+    M5.Lcd.setCursor(5, 10);
+    M5.Lcd.print("WAVELENGTH");
+
+    M5.Lcd.setTextSize(2);
+    M5.Lcd.setTextColor(COLOR_WHITE);
+    M5.Lcd.setCursor(5, 30);
+    M5.Lcd.print(wavelengthNames[wavelengthIndex]);
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setCursor(5, 50);
+    M5.Lcd.print(wavelengthValues[wavelengthIndex]);
+    M5.Lcd.print(" nm");
+
+    M5.Lcd.setTextColor(COLOR_CYAN);
+    M5.Lcd.setCursor(5, 70);
+    M5.Lcd.print("A: Change");
+    M5.Lcd.setCursor(5, 85);
+    M5.Lcd.print("B: Gain");
+}
+
+// Function to display gain settings screen
+void displayGainSettings()
+{
+    M5.Lcd.fillScreen(COLOR_BLACK);
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setTextColor(COLOR_YELLOW);
+    M5.Lcd.setCursor(5, 10);
+    M5.Lcd.print("GAIN");
+
+    M5.Lcd.setTextSize(2);
+    M5.Lcd.setTextColor(COLOR_WHITE);
+    M5.Lcd.setCursor(5, 30);
+    M5.Lcd.print("x");
+    M5.Lcd.print(gainFactors[gainIndex]);
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setTextColor(COLOR_CYAN);
+    M5.Lcd.setCursor(5, 70);
+    M5.Lcd.print("A: Change");
+    M5.Lcd.setCursor(5, 85);
+    M5.Lcd.print("B: Integration");
+}
+
+// Function to display integration time settings screen
+void displayIntegrationSettings()
+{
+    M5.Lcd.fillScreen(COLOR_BLACK);
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setTextColor(COLOR_YELLOW);
+    M5.Lcd.setCursor(5, 10);
+    M5.Lcd.print("INTEGRATION TIME");
+
+    M5.Lcd.setTextSize(2);
+    M5.Lcd.setTextColor(COLOR_WHITE);
+    M5.Lcd.setCursor(5, 30);
+    float integrationTimeMs = (atimeSettings[atimeIndex] + 1) * 2.78;
+    M5.Lcd.print(integrationTimeMs);
+    M5.Lcd.print(" ms");
+
+    M5.Lcd.setTextSize(1);
+    M5.Lcd.setTextColor(COLOR_CYAN);
+    M5.Lcd.setCursor(5, 70);
+    M5.Lcd.print("A: Change");
+    M5.Lcd.setCursor(5, 85);
+    M5.Lcd.print("B: Spectrum");
+}
+
+// HTTP request handlers
 void handleRoot()
 {
     server.send(200, "text/html", index_html);
@@ -107,6 +295,8 @@ void handleChangeWavelength()
     // Cycle to the next wavelength
     wavelengthIndex = (wavelengthIndex + 1) % 9;
 
+    // Force UI update on the device
+    newMeasurementTaken = true;
     // Return the new selected index
     String json = "{\"selected_index\": " + String(wavelengthIndex) + "}";
     server.send(200, "application/json", json);
@@ -118,6 +308,9 @@ void handleAdjustGain()
     gainIndex = (gainIndex + 1) % 11;
     updateSettings();
 
+    // Force UI update on the device
+    newMeasurementTaken = true;
+
     // Return the new gain value
     String json = "{\"gain\": " + String(gainFactors[gainIndex]) + "}";
     server.send(200, "application/json", json);
@@ -128,6 +321,9 @@ void handleAdjustIntegrationTime()
     // Cycle to the next integration time setting
     atimeIndex = (atimeIndex + 1) % 6;
     updateSettings();
+
+    // Force UI update on the device
+    newMeasurementTaken = true;
 
     // Calculate integration time in milliseconds
     float integrationTimeMs = (atimeSettings[atimeIndex] + 1) * 2.78;
@@ -142,12 +338,12 @@ void setup()
     // Initialize M5StickC Plus
     M5.begin();
     M5.Lcd.setRotation(3);
-    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.fillScreen(COLOR_BLACK);
     M5.Lcd.setCursor(0, 0);
-    M5.Lcd.setTextColor(WHITE);
+    M5.Lcd.setTextColor(COLOR_WHITE);
     M5.Lcd.setTextSize(1);
     M5.Lcd.println("Pocket Spectrometer");
-    M5.Lcd.println("Web Server");
+    M5.Lcd.println("Initializing...");
 
     // Initialize random seed for mock data variation
     randomSeed(analogRead(0));
@@ -195,60 +391,103 @@ void setup()
     M5.Lcd.println("HTTP server started");
     delay(2000);
 
-    // Update display with IP address for easy connection
-    M5.Lcd.fillScreen(BLACK);
-    M5.Lcd.setCursor(0, 10);
-    M5.Lcd.setTextSize(1);
-    M5.Lcd.println("Spectrometer Web Server");
-    M5.Lcd.println("Running at:");
-    M5.Lcd.setTextSize(2);
-    M5.Lcd.setCursor(0, 40);
-    M5.Lcd.println(WiFi.localIP());
-    M5.Lcd.setTextSize(1);
-    M5.Lcd.setCursor(0, 70);
-    M5.Lcd.println("Connect to this IP");
-    M5.Lcd.println("in your web browser");
-    M5.Lcd.println("Press A to update data");
-
     // Take an initial measurement
     takeMeasurement();
-}
 
+    // Show the spectrum display
+    displaySpectrum();
+}
 void loop()
 {
     server.handleClient();
     M5.update();
 
-    // Check if button A is pressed to take a measurement
+    // Handle button presses based on current display mode
     if (M5.BtnA.wasPressed())
     {
-        M5.Lcd.fillScreen(BLACK);
-        M5.Lcd.setCursor(0, 10);
-        M5.Lcd.println("Taking measurement...");
+        switch (displayMode)
+        {
+        case 0: // Spectrum display - Take measurement
+            M5.Lcd.fillScreen(COLOR_BLACK);
+            M5.Lcd.setCursor(5, 40);
+            M5.Lcd.setTextSize(1);
+            M5.Lcd.print("Taking measurement...");
 
-        // Take a new measurement
-        takeMeasurement();
+            takeMeasurement();
 
-        M5.Lcd.println("Measurement complete!");
-        M5.Lcd.println("Refresh web page to see data");
-        M5.Lcd.setCursor(0, 40);
-        M5.Lcd.setTextSize(2);
-        M5.Lcd.println(WiFi.localIP());
-        M5.Lcd.setTextSize(1);
+            displaySpectrum();
+            break;
+
+        case 1: // Wavelength selection - Change wavelength
+            wavelengthIndex = (wavelengthIndex + 1) % 9;
+            displayWavelengthSelection();
+            break;
+
+        case 2: // Gain settings - Change gain
+            gainIndex = (gainIndex + 1) % 11;
+            updateSettings();
+            displayGainSettings();
+            break;
+
+        case 3: // Integration time - Change integration time
+            atimeIndex = (atimeIndex + 1) % 6;
+            updateSettings();
+            displayIntegrationSettings();
+            break;
+        }
     }
 
-    // Check if button B is pressed to cycle through wavelengths
     if (M5.BtnB.wasPressed())
     {
-        wavelengthIndex = (wavelengthIndex + 1) % 9;
+        // Cycle through display modes
+        displayMode = (displayMode + 1) % 4;
 
-        M5.Lcd.fillScreen(BLACK);
-        M5.Lcd.setCursor(0, 10);
-        M5.Lcd.println("Selected wavelength:");
-        M5.Lcd.setTextSize(2);
-        M5.Lcd.println(wavelengthNames[wavelengthIndex]);
-        M5.Lcd.println(String(wavelengthValues[wavelengthIndex]) + " nm");
-        M5.Lcd.setTextSize(1);
+        // Always update the display when changing modes, regardless of newMeasurementTaken flag
+        switch (displayMode)
+        {
+        case 0:
+            displaySpectrum();
+            break;
+        case 1:
+            displayWavelengthSelection();
+            break;
+        case 2:
+            displayGainSettings();
+            break;
+        case 3:
+            displayIntegrationSettings();
+            break;
+        }
+    }
+
+    // Update the display periodically in spectrum mode
+    if (displayMode == 0 && millis() - lastUIUpdate > uiUpdateInterval)
+    {
+        lastUIUpdate = millis();
+        // Only redraw if new measurement was taken
+        if (newMeasurementTaken)
+        {
+            displaySpectrum();
+            newMeasurementTaken = false;
+        }
+    }
+
+    // Check if we need to update the UI due to web interface changes when not in spectrum mode
+    if (displayMode != 0 && newMeasurementTaken)
+    {
+        switch (displayMode)
+        {
+        case 1:
+            displayWavelengthSelection();
+            break;
+        case 2:
+            displayGainSettings();
+            break;
+        case 3:
+            displayIntegrationSettings();
+            break;
+        }
+        newMeasurementTaken = false; // Reset the flag after displaying
     }
 
     delay(10);
